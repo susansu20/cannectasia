@@ -93,7 +93,8 @@ Sub-headings Montserrat Bold, body Montserrat Regular.
   .nav ul a{color:var(--mute-inv);transition:color .2s;padding:6px 0;border-bottom:2px solid transparent;}
   .nav ul a:hover{color:#fff;}
   .nav ul a.active{color:#fff;border-bottom-color:var(--orange);}
-  .nav .cta{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--orange);padding:11px 18px;color:#fff;transition:.25s;}
+  .nav .cta{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--orange);padding:11px 18px;color:#fff;transition:.25s;white-space:nowrap;flex-shrink:0;}
+  .cta-short{display:none;}
   .nav .cta:hover{background:var(--orange);}
   .burger{display:none;background:none;border:1px solid var(--hair-inv);color:#fff;padding:8px 12px;font-size:16px;cursor:pointer;}
 
@@ -310,8 +311,13 @@ Sub-headings Montserrat Bold, body Montserrat Regular.
 
   @media (max-width:900px){
     .nav ul{display:none;}
-    .nav ul.open{display:flex;flex-direction:column;position:absolute;top:74px;left:0;right:0;background:#000;padding:24px 6vw 30px;gap:18px;border-bottom:1px solid var(--hair-inv);}
-    .burger{display:block;}
+    .nav{height:62px;gap:10px;}
+    .nav .logo img{height:28px;}
+    .nav .cta{font-size:9.5px;padding:9px 12px;letter-spacing:.1em;}
+    .cta-full{display:none;}
+    .cta-short{display:inline;}
+    .nav ul.open{display:flex;flex-direction:column;position:absolute;top:62px;left:0;right:0;background:#000;padding:24px 6vw 30px;gap:18px;border-bottom:1px solid var(--hair-inv);}
+    .burger{display:block;padding:7px 11px;font-size:14px;}
     .proofbar,.stepgrid{grid-template-columns:1fr 1fr;}
     .proofbar div{border:none;border-bottom:1px solid var(--hair-inv);padding-left:0!important;}
     .rows .row,.rows .row:nth-child(even){grid-template-columns:1fr;gap:26px;}
@@ -325,7 +331,10 @@ Sub-headings Montserrat Bold, body Montserrat Regular.
     .svc{grid-template-columns:50px 1fr;}
     .svc p{grid-column:2;}
     .herostrip{grid-template-columns:1fr 1fr;}
-    .fgrid{grid-template-columns:1fr 1fr;}
+    .fgrid{grid-template-columns:1fr 1fr;gap:38px 26px;}
+    .fgrid > div{min-width:0;}
+    .fgrid > div:first-child{grid-column:1/-1;}
+    .fgrid .logo img{height:34px;}
     .diagform{grid-template-columns:1fr;}
     .pains{grid-template-columns:1fr;}
     .pain:nth-child(odd){border-right:none;}
@@ -335,6 +344,23 @@ Sub-headings Montserrat Bold, body Montserrat Regular.
     .needband{min-height:70vh;}
     .newsband{grid-template-columns:1fr;}
     .newsform{flex-direction:column;}
+  }
+
+  @media (max-width:640px){
+    .stepgrid{grid-template-columns:1fr;}
+    .stepgrid > div{min-width:0;}
+    .routes{grid-template-columns:1fr;}
+    .case .metrics{gap:10px;}
+    .case .metrics > div{min-width:0;}
+    .case .metrics span{overflow-wrap:break-word;}
+    .case .metrics b{font-size:17px;}
+  }
+  @media (max-width:400px){
+    .nav{gap:8px;padding:0 4vw;}
+    .nav > div{gap:8px !important;}
+    .nav .logo img{height:24px;}
+    .nav .cta{font-size:8.5px;padding:8px 10px;letter-spacing:.08em;}
+    .burger{padding:6px 9px;font-size:13px;}
   }
 </style>
 </head>
@@ -351,7 +377,7 @@ Sub-headings Montserrat Bold, body Montserrat Regular.
       <li><a href="#/insights" data-p="insights">Insights</a></li>
     </ul>
     <div style="display:flex;gap:14px;align-items:center;">
-      <a class="cta" href="#/free-market-diagnostic">Free Market Diagnostic</a>
+      <a class="cta" href="#/free-market-diagnostic"><span class="cta-full">Free Market Diagnostic</span><span class="cta-short">Free Diagnostic</span></a>
       <button class="burger" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
     </div>
   </nav>
